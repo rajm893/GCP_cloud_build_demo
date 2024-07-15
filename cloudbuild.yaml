@@ -11,6 +11,14 @@ steps:
       - push
       - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
 
+ - name: gcr.io/cloud-builders/docker
+    args:
+      - run
+      - '--rm'
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
+      - python
+      - /sample.py
+
 images:
   - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
 
