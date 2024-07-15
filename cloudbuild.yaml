@@ -1,0 +1,26 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
+      - .
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - tag
+      - '${_IMAGE}'
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
+
+images:
+  - '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_TAG}'
+
+substitutions:
+  _REGION: 'europe-west1'
+  _PROJECT_ID: 'myproject-23042024'
+  _REPOSITORY: 'gcp-demo-repo'
+  _IMAGE: 'gcp-demo'
+  _IMAGE_TAG: 'gcp-demo:latest'
