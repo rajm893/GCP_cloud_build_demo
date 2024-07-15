@@ -24,3 +24,6 @@ substitutions:
   _REPOSITORY: 'gcp-demo-repo'
   _IMAGE: 'gcp-demo'
   _IMAGE_TAG: 'gcp-demo:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
